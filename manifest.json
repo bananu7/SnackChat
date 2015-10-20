@@ -1,16 +1,35 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "SnackChat",
+  "description": "This extension augments StackOverflow chat.",
   "version": "1.0",
 
-  "browser_action": {
+  "page_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
+    "http://chat.stackoverflow.com/"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["http://chat.stackoverflow.com/*"],
+      "css": ["monokai_sublime.css", "snackchat.css"],
+      "js": ["snackchat-content.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    "script.js",
+    "monokai_sublime.css",
+    "lib/highlight.min.js"
+  ],
+
+  "background": {
+    "scripts": ["snackchat-background.js"],
+    "persistent": true
+  }
 }
