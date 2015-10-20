@@ -15,7 +15,7 @@
 
   "content_scripts": [
     {
-      "matches": ["http://chat.stackoverflow.com/*"],
+      "matches": ["http://chat.stackoverflow.com/*", "https://chat.stackoverflow.com/*"],
       "css": ["monokai_sublime.css", "snackchat.css"],
       "js": ["snackchat-content.js"]
     }
