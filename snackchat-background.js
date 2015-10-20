@@ -7,8 +7,11 @@ function showPageAction( tabId, changeInfo, tab ) {
 // Call the above function when the url of a tab changes.
 chrome.tabs.onUpdated.addListener(showPageAction);
 
-chrome.pageAction.onClicked.addListener(function(tab) {
-  chrome.tabs.executeScript({
-    code: 'document.body.style.backgroundColor="red"'
-  });
-});
+chrome.pageAction.onClicked.addListener(function highlighCode() {
+    console.log("ok");
+     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {command: "click"});
+    });
+ });
+
+
